@@ -1,0 +1,21 @@
+allprojects  {
+    group = 'enmasse'
+}
+
+apply plugin: 'java'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+description = 'JMS client'
+dependencies {
+    compile "org.apache.qpid:qpid-jms-client:0.10.0"
+    compile "org.slf4j:slf4j-log4j12:1.7.21"
+}
+
+apply plugin: 'application'
+mainClassName = 'org.apache.qpid.jms.example.Main'
