@@ -15,9 +15,10 @@ class Main {
             String broker1 = args[2];
             String broker2 = args[3];
 
-            ExecutorService executor = Executors.newFixedThreadPool(3);
-            executor.execute(() -> Receiver.receive(destination, broker1, count));
-            executor.execute(() -> Receiver.receive(destination, broker2, count));
+            ExecutorService executor = Executors.newFixedThreadPool(4);
+            executor.execute(() -> Receiver.receive("r1", destination, broker1, count));
+            executor.execute(() -> Receiver.receive("r2", destination, broker2, count));
+            executor.execute(() -> Receiver.receive("r3", destination, broker2, count));
 
             System.out.println("Started subscribers");
             Thread.sleep(5000);

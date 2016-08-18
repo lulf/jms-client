@@ -25,7 +25,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 
 public class Receiver {
-    public static void receive(String destination, String brokerId, int count) {
+    public static void receive(String myid, String destination, String brokerId, int count) {
         try {
             // The configuration for the Qpid InitialContextFactory has been supplied in
             // a jndi.properties file in the classpath, which results in it being picked
@@ -47,7 +47,7 @@ public class Receiver {
             int actualCount = 0;
             for (int i = 1; i <= count; i++, actualCount++) {
                 Message message = messageConsumer.receive();
-                System.out.println("Got message " + i + " from " + brokerId);
+                System.out.println(myid + ": got message " + i + " from " + brokerId);
             }
 
             connection.close();
